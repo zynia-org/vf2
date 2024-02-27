@@ -1,5 +1,11 @@
 #!/bin/bash
-/sbin/fdisk <<EOF
+if [ $(whoami) != "root"]
+then
+  echo "Need to be root.  Exiting."
+  exit 1
+fi
+systemctl disable display-manager
+/sbin/fdisk /dev/mmcblk1 <<EOF
 d
 4
 n
