@@ -16,8 +16,9 @@ N
 w
 EOF
 /sbin/resize2fs /dev/mmcblk1p4
+rm /etc/apt/sources.list
 echo "deb https://deb.debian.org/debian/ sid main contrib non-free" >>/etc/apt/sources.list
-sed -i -e "s/20221225T084846Z/20230724T141507Z/" /etc/apt/sources.list
+#sed -i -e "s/20221225T084846Z/20230724T141507Z/" /etc/apt/sources.list
 apt update
 apt install -y debian-ports-archive-keyring
 apt update
