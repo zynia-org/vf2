@@ -33,4 +33,10 @@ cd zynthian-sys
 git fetch origin zynia
 git checkout zynia
 apt install -y cmake
-
+mkdir /log
+cat > /zynthian/zynthian-sys/scripts/do_vf2 <<EOF
+#!/bin/bash
+cd /zynthian/zynthian-sys/scripts
+./setup_system_vf2.sh 2>&1 | tee /log/setup.log
+EOF
+chmod +x /zynthian/zynthian-sys/scripts/do_vf2
