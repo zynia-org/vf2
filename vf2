@@ -28,10 +28,16 @@ apt-get install -y gh
 apt install -y cmake
 git config --global user.email "frank@halasz.org"
 git config --global user.name "Frank Halasz"
+#
+tar xzf IMG_GPU-xorg.tar.gz
+cp -rp IMG_GPU-xorg/* /
+rm -rf IMG_GPU-xorg
+#
 mkdir /zynthian
 cd /zynthian
 git clone -b oram-zynia https://github.com/zynia-org/zynthian-sys zynia
 mkdir /log
+#
 cat > /zynthian/zynia/do_vf2 <<EOF
 #!/bin/bash
 cd /zynthian/zynia/scripts
