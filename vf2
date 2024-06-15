@@ -5,7 +5,7 @@ then
   exit 1
 fi
 systemctl disable display-manager
-/sbin/fdisk /dev/mmcblk1 <<EOF
+/sbin/fdisk /dev/nvme0n1 <<EOF
 d
 4
 n
@@ -15,7 +15,7 @@ n
 N
 w
 EOF
-/sbin/resize2fs /dev/mmcblk1p4
+/sbin/resize2fs /dev/nvme0n1p4
 rm /etc/apt/sources.list
 echo "deb https://deb.debian.org/debian/ sid main contrib non-free" >>/etc/apt/sources.list
 apt update
@@ -29,10 +29,6 @@ apt install -y cmake
 git config --global user.email "frank@halasz.org"
 git config --global user.name "Frank Halasz"
 #
-tar xzf IMG_GPU-xorg.tar.gz
-cp -rp IMG_GPU-xorg/* /
-rm -rf IMG_GPU-xorg
-#
 mkdir /zynthian
 cd /zynthian
 git clone -b oram-zynia https://github.com/zynia-org/zynthian-sys zynia
@@ -42,5 +38,13 @@ cat > /zynthian/zynia/do_vf2 <<EOF
 #!/bin/bash
 cd /zynthian/zynia/scripts
 ./setup_system_vf2_bookworm.sh 2>&1 | tee /log/setup.log
+#
+cd /vf2
+tar xzf IMG_GPU-xorg.tar.gz
+cp -rp IMG_GPU-xorg/* /
+rm -rf IMG_GPU-xorg
+#
+cd /zynthian
+#
 EOF
 chmod +x /zynthian/zynia/do_vf2
