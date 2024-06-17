@@ -41,7 +41,9 @@ cd /zynthian/zynia/scripts
 #
 cd /vf2
 tar xzf IMG_GPU-xorg.tar.gz
-cp -rp IMG_GPU-xorg/* /
+cp -rp IMG_GPU-xorg/lib/* /lib
+cp -rp IMG_GPU-xorg/etc/* /etc
+cp -rp IMG_GPU-xorg/usr/* /usr
 rm -rf IMG_GPU-xorg
 #
 cd /zynthian
